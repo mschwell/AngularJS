@@ -1,17 +1,12 @@
 (function () {
 'use strict';
 
-angular.module('DIApp', [])
-.controller('DIController', DIController);
+angular.module('LunchCheck', [])
+.controller('LunchCheckController', MsgController);
 
-DIController.$inject = ['$scope', '$filter'];
-function DIController($scope, $filter) {
-  $scope.name = "Matt";
-
-  $scope.upper = function () {
-    var upCase = $filter('uppercase');
-    $scope.name = upCase($scope.name);
-  };
+LunchCheckController.$inject = ['$scope'];
+function LunchCheckController($scope) {
+  
 }
 
 })();
