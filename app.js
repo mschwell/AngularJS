@@ -10,7 +10,7 @@ function LunchCheckController($scope) {
   $scope.displayMessageText = "";
 
   $scope.displayMessage = function () {
-    if($scope.items != '') {
+    if($scope.items != "") {
       var displayMessageValue = getMessageText($scope.items);
       $scope.displayMessageText = displayMessageValue;
     } else {
