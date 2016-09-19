@@ -10,8 +10,12 @@ function LunchCheckController($scope) {
   $scope.displayMessageText = "";
 
   $scope.displayMessage = function () {
-    var displayMessageValue = getMessageText($scope.items);
-    $scope.displayMessageText = displayMessageValue;
+    if($scope.items != '') {
+      var displayMessageValue = getMessageText($scope.items);
+      $scope.displayMessageText = displayMessageValue;
+    } else {
+      $scope.displayMessageText ="Please enter data first";
+    }
   };
 
     function getMessageText(items) {
