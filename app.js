@@ -1,33 +1,47 @@
-(function () {
-'use strict';
+(function() {
+    'use strict';
 
-angular.module('LunchCheck', [])
-.controller('LunchCheckController', LunchCheckController);
+    angular.module('ShoppingListCheckOff', [])
+        .controller('ToBuyController', ToBuyController)
+        .controller('AlreadyBoughtController', AlreadyBoughtController)
+        .service('ShoppingListCheckOffService', ShoppingListCheckOffService);
 
-LunchCheckController.$inject = ['$scope'];
-function LunchCheckController($scope) {
-  $scope.items = "";
-  $scope.displayMessageText = "";
+    ToBuyController.$inject = ['ShoppingListCheckOffService'];
 
-  $scope.displayMessage = function () {
-    if($scope.items != "") {
-      var displayMessageValue = getMessageText($scope.items);
-      $scope.displayMessageText = displayMessageValue;
-    } else {
-      $scope.displayMessageText ="Please enter data first";
+    function ToBuyController(ShoppingListCheckOffService) {
+        var toBuy = this;
+
+        toBuy.items = ShoppingListCheckOffService.itemsToBuy;
+
+        toBuy.moveItem = function(itemIndex) {
+            ShoppingListCheckOffService.moveItem(itemIndex);
+        };
     }
-  };
 
-    function getMessageText(items) {
-      var stringSplit = items.split(',');
-      var returString = "";
-      if(stringSplit.length <= 3) {
-        returString = "Enjoy!";
-      } else {
-        returString = "Too much!";
-      }
-      return returString;
+    AlreadyBoughtController.$inject = ['ShoppingListCheckOffService'];
+
+    function AlreadyBoughtController(ShoppingListCheckOffService) {
+        var alreadyBought = this;
+        alreadyBought.items = ShoppingListCheckOffService.itemsAlreadyBought;
     }
-}
+
+    function ShoppingListCheckOffService() {
+        var service = this;
+
+        service.itemsToBuy = [
+            { name: "Apples", quantity: 2 },
+            { name: "Mangos", quantity: 4 },
+            { name: "Milk", quantity: 3 },
+            { name: "Cookies", quantity: 10 },
+            { name: "Juice", quantity: 6 }
+        ];
+
+        service.itemsAlreadyBought = [];
+
+        service.moveItem = function(itemIndex) {
+            var item = service.itemsToBuy.splice(itemIndex, 1)[0];
+            service.itemsAlreadyBought.push(item);
+        };
+    }
 
 })();
