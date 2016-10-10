@@ -1,26 +1,27 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html ng-app='MenuApp'>
   <head>
-    <title>Narrow Down Your Menu Choice</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="styles/bootstrap.min.css">
-    <link rel="stylesheet" href="styles/styles.css">
-    <script src="angular.min.js"></script>
-    <script src="app.js"></script>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="css/styles.css">
+    <title>Welcome to our restaurant</title>
   </head>
-<body ng-app="NarrowItDownApp">
-   <div class="container" ng-controller="NarrowItDownController as narrow">
-    <h1>Narrow Down Your Menu Choice</h1>
-    <div class="form-group">
-      <input type="text" placeholder="search term" ng-model="searchTerm" class="form-control">
-    </div>
-    <div class="form-group narrow-button">
-      <button class="btn btn-primary" ng-click="narrow.getMatchedMenuItems(searchTerm.toLowerCase())">Narrow It Down For Me!</button>
-    </div>
-    <found-items
-      items = "narrow.foundItems",
-      on-remove="narrow.removeItem(index)"></found-items>
-  </div>
+  <body>
+    <h1>Welcome to our restaurant</h1>
+    <ui-view></ui-view>
 
-</body>
+    <script src="lib/angular.min.js"></script>
+    <script src="lib/angular-ui-router.min.js"></script>
+
+    <script src="src/menudata/data.module.js"></script>
+    <script src="src/menuapp/menuapp.module.js"></script>
+
+    <script src="src/routes.js"></script>
+
+    <script src="src/menuapp/categories.component.js"></script>
+    <script src="src/menuapp/items.component.js"></script>
+    <script src="src/menudata/menudata.service.js"></script>
+    <script src="src/menuapp/main-categories.controller.js"></script>
+    <script src="src/menuapp/item-detail.controller.js"></script>
+
+  </body>
 </html>
