@@ -1,7 +1,0 @@
-Following CMDs for project:
-
-cd coursera-projects
-
-cd AngularJS
-
-browser-sync start --server --directory --files "**/*"

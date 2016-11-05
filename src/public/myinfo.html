@@ -1,0 +1,36 @@
+<div class="container">
+
+  <div ng-if="!ctrl.hasSignedUp();">
+    <h2 class="text-center">Not Signed Up Yet. <a ui-sref="public.signup">Sign up Now!</a></h2>
+  </div>
+
+  <div ng-if="ctrl.hasSignedUp();">
+    <h2 class="text-center">My Info</h2>
+
+    <div class="form-group">
+      <div>First name</div>
+      <div>{{ctrl.info.firstName}}</div>
+    </div>
+    <div class="form-group">
+      <div>Last name</div>
+      <div>{{ctrl.info.surname}}</div>
+    </div>
+    <div class="form-group">
+      <div>Email address</div>
+      <div>{{ctrl.info.email}}</div>
+    </div>
+    <div class="form-group">
+      <div>Phone mobile</div>
+      <div>{{ctrl.info.phoneMobile}}</div>
+    </div>
+    <div class="form-group">
+      <div>Favorite dish</div>
+      <div>
+        <menu-item menu-item="ctrl.favoriteDish">
+        </menu-item>
+      </div>
+    </div>
+    <button class="btn btn-primary" ng-click="ctrl.unsubscribe();">Unsubscribe</button>
+  </div>
+
+</div>
